@@ -24,13 +24,15 @@ public class ReloadProjectile : MonoBehaviour {
         if (other == projectileCollider)
         {
             Reset();
+        } else {
+            Destroy(other.gameObject);
         }
     }
 
     public void Reset()
     {
         Destroy(projectile);
-        projectile = Instantiate(projectilereference);
+        projectile = (GameObject)Instantiate(projectilereference, projectilereference.transform.parent);
         projectile.SetActive(true);
         projectileCollider = projectile.GetComponent<Collider2D>();
         spring = projectile.GetComponent<SpringJoint2D>();
