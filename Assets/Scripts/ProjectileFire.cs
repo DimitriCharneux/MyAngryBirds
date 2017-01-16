@@ -4,7 +4,10 @@ using System.Collections;
 public class ProjectileFire : MonoBehaviour {
     public LineRenderer catapultBandBack, catapultBandFront;
     public float maxStretch = 3f;
+    public bool isBoostable = true;
+    public float powerBoost = 10f;
 
+    private bool boostActivated;
     private SpringJoint2D spring;
     private Transform catapult;
     private bool clickedOn;
@@ -18,6 +21,7 @@ public class ProjectileFire : MonoBehaviour {
         spring = GetComponent<SpringJoint2D>();
         rigidbody = GetComponent<Rigidbody2D>();
         catapult = spring.connectedBody.transform;
+        boostActivated = false;
     }
 
 	void Start () {
@@ -64,16 +68,26 @@ public class ProjectileFire : MonoBehaviour {
         {
             if (!clickedOn)
             {
-                if (!rigidbody.isKinematic && prevVelocity.sqrMagnitude > rigidbody.velocity.sqrMagnitude){
+                if (!rigidbody.isKinematic && prevVelocity.sqrMagnitude > rigidbody.velocity.sqrMagnitude)
+                {
                     Destroy(spring);
                     rigidbody.velocity = prevVelocity;
                 }
                 prevVelocity = rigidbody.velocity;
             }
             updateLine();
-        } else {
+        }
+        else
+        {
             catapultBandBack.enabled = false;
             catapultBandFront.enabled = false;
+
+            //Boost de la balle
+            if (Input.GetButtonDown("Fire1") && isBoostable && !boostActivated)
+            {
+                rigidbody.velocity = new Vector2(rigidbody.velocity.x + powerBoost, rigidbody.velocity.y);
+                boostActivated = true;
+            }
         }
 	}
 
