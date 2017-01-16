@@ -14,62 +14,9 @@ Platform assembly: C:\Users\Dimitri\Documents\MyAngryBirds\myAngryBirds_Data\Man
 Loading C:\Users\Dimitri\Documents\MyAngryBirds\myAngryBirds_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Dimitri\Documents\MyAngryBirds\myAngryBirds_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Dimitri\Documents\MyAngryBirds\myAngryBirds_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.044 seconds
+- Completed reload, in  0.048 seconds
 Platform assembly: C:\Users\Dimitri\Documents\MyAngryBirds\myAngryBirds_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Dimitri\Documents\MyAngryBirds\myAngryBirds_Data\Managed\System.dll (this message is harmless)
 desktop: 1680x1050 60Hz; virtual: 1680x1050 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-<RI> Initialized touch support.
-UnloadTime: 0.606719 ms
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.292094 ms
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.369151 ms (FindLiveObjects: 0.027903 ms CreateObjectMapping: 0.030975 ms MarkObjects: 0.299007 ms  DeleteObjects: 0.010239 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.352511 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.198399 ms (FindLiveObjects: 0.015359 ms CreateObjectMapping: 0.010751 ms MarkObjects: 0.169215 ms  DeleteObjects: 0.002559 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.336895 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.517119 ms (FindLiveObjects: 0.044799 ms CreateObjectMapping: 0.036351 ms MarkObjects: 0.426495 ms  DeleteObjects: 0.008447 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.715519 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.351487 ms (FindLiveObjects: 0.034559 ms CreateObjectMapping: 0.023039 ms MarkObjects: 0.284415 ms  DeleteObjects: 0.008959 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.327167 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.421375 ms (FindLiveObjects: 0.033023 ms CreateObjectMapping: 0.030207 ms MarkObjects: 0.350719 ms  DeleteObjects: 0.006399 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.361727 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.165631 ms (FindLiveObjects: 0.011263 ms CreateObjectMapping: 0.009983 ms MarkObjects: 0.139519 ms  DeleteObjects: 0.004607 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.330239 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.209663 ms (FindLiveObjects: 0.026623 ms CreateObjectMapping: 0.010239 ms MarkObjects: 0.169727 ms  DeleteObjects: 0.002559 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.575487 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 356.
-Total: 0.362495 ms (FindLiveObjects: 0.028671 ms CreateObjectMapping: 0.022271 ms MarkObjects: 0.301311 ms  DeleteObjects: 0.009471 ms)
-
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2d84 -> priority: 1 
-  Thread -> id: 1ab8 -> priority: 1 

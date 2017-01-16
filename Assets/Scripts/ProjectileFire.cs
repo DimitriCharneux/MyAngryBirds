@@ -5,7 +5,7 @@ public class ProjectileFire : MonoBehaviour {
     public LineRenderer catapultBandBack, catapultBandFront;
     public float maxStretch = 3f;
     public bool isBoostable = true;
-    public float powerBoost = 10f;
+    public float powerBoost = 2f;
 
     private bool boostActivated;
     private SpringJoint2D spring;
@@ -85,7 +85,7 @@ public class ProjectileFire : MonoBehaviour {
             //Boost de la balle
             if (Input.GetButtonDown("Fire1") && isBoostable && !boostActivated)
             {
-                rigidbody.velocity = new Vector2(rigidbody.velocity.x + powerBoost, rigidbody.velocity.y);
+                rigidbody.velocity = new Vector2(rigidbody.velocity.x * powerBoost, rigidbody.velocity.y);
                 boostActivated = true;
             }
         }
