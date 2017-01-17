@@ -50,15 +50,9 @@ public class Result : MonoBehaviour {
         Application.LoadLevel(Application.loadedLevel);
     }
 
-    public void Level1Button()
+    public void LevelButton(string lvl)
     {
         startTime();
-        Application.LoadLevel("level1");
-    }
-
-    public void Level2Button()
-    {
-        startTime();
-        Application.LoadLevel("level2");
+        Application.LoadLevel(lvl);
     }
 }
