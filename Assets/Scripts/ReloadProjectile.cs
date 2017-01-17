@@ -38,6 +38,8 @@ public class ReloadProjectile : MonoBehaviour {
         spring = projectile.GetComponent<SpringJoint2D>();
         projectileBody = projectile.GetComponent<Rigidbody2D>();
         projectileBody.isKinematic = true;
+
+        CameraMovement.projectileS = projectile.transform;
     }
 
     // Update is called once per frame
