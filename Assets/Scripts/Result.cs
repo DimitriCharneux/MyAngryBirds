@@ -28,14 +28,16 @@ public class Result : MonoBehaviour {
 
     public void PauseButton()
     {
-        if (menu.activeSelf)
-        {
-            startTime();
-        } else
-        {
-            Time.timeScale = 0;
-            menu.SetActive(true);
-        } 
+		if(!isTerminated){
+	        if (menu.activeSelf)
+	        {
+	            startTime();
+	        } else
+	        {
+	            Time.timeScale = 0;
+	            menu.SetActive(true);
+	        } 
+		}
     }
 
     public void startTime()
