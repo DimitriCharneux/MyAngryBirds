@@ -102,6 +102,7 @@ public class ProjectileFire : MonoBehaviour {
 
     void OnMouseDown()
     {
+        Debug.Log("down");
         if (spring != null)
         {
             spring.enabled = false;
