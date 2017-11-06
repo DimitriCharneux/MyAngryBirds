@@ -6,8 +6,12 @@ public class ProjectileFire : MonoBehaviour {
     public float maxStretch = 3f;
     public bool isBoostable = true;
     public float powerBoost = 2f;
+    public float resetSpeed = 0.025f;
+    public ReloadProjectile reload;
 
+    private CameraMovement camera;
     private bool boostActivated;
+    private bool bulletLaunched = false;
     private SpringJoint2D spring;
     private Transform catapult;
     private bool clickedOn;
@@ -25,6 +29,7 @@ public class ProjectileFire : MonoBehaviour {
     }
 
 	void Start () {
+        camera = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         setupLine();
         mouseRay = new Ray(catapult.position, Vector3.zero);
         leftCatapultToProjectile = new Ray(catapultBandFront.transform.position, Vector3.zero);
@@ -49,25 +54,28 @@ public class ProjectileFire : MonoBehaviour {
     }
 
 	void Update () {
-        if (clickedOn) {
-            //TODO modif si tactile
-            Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 catapultToMouse = mouseInWorld - catapult.position;
-
-            if (catapultToMouse.sqrMagnitude > maxStretch * maxStretch) {
-                mouseRay.direction = catapultToMouse;
-                mouseInWorld = mouseRay.GetPoint(maxStretch);
-            }
-
-            mouseInWorld.z = 0;
-            transform.position = mouseInWorld;
-        }
-
-
+        //si la balle n'est pas partie
         if (spring != null)
         {
-            if (!clickedOn)
+            //deplacement du boulet à la position de la souris si on clique
+            if (Input.GetMouseButton(0))
             {
+                spring.enabled = false;
+                Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 catapultToMouse = mouseInWorld - catapult.position;
+
+                if (catapultToMouse.sqrMagnitude > maxStretch * maxStretch)
+                {
+                    mouseRay.direction = catapultToMouse;
+                    mouseInWorld = mouseRay.GetPoint(maxStretch);
+                }
+
+                mouseInWorld.z = 0;
+                transform.position = mouseInWorld;   
+            }
+            else
+            {
+                //on détruit les cordes quand la balle commence à ralentir
                 if (!rigidbody.isKinematic && prevVelocity.sqrMagnitude > rigidbody.velocity.sqrMagnitude)
                 {
                     Destroy(spring);
@@ -88,9 +96,17 @@ public class ProjectileFire : MonoBehaviour {
                 rigidbody.velocity = new Vector2(rigidbody.velocity.x * powerBoost, rigidbody.velocity.y);
                 boostActivated = true;
             }
+
+            //destruction de la balle
+            if (rigidbody.velocity.sqrMagnitude < resetSpeed)
+            {
+                reload.reload();
+                Destroy(this.gameObject);
+            }
         }
 	}
 
+    //mise a jour des corde de la catapulte
     void updateLine()
     {
         Vector2 catapultToProjectile = transform.position - catapultBandFront.transform.position;
@@ -100,23 +116,14 @@ public class ProjectileFire : MonoBehaviour {
         catapultBandFront.SetPosition(1, holdPoint);
     }
 
-    void OnMouseDown()
-    {
-        Debug.Log("down");
-        if (spring != null)
-        {
-            spring.enabled = false;
-            clickedOn = true;
-        }
-    }
-
+    //feu !!
     void OnMouseUp()
     {
         if (spring != null)
         {
             spring.enabled = true;
+            camera.playParticles();
         }
-        clickedOn = false;
         rigidbody.isKinematic = false;
     }
 }

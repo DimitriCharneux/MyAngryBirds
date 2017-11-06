@@ -2,53 +2,36 @@
 using System.Collections;
 
 public class ReloadProjectile : MonoBehaviour {
-    public GameObject projectile, projectilereference;
-    public float resetSpeed = 0.025f;
+    public GameObject projectilereference;
 
-    private float sqrResetSpeed;
-    private Rigidbody2D projectileBody;
-    private SpringJoint2D spring;
-    private Collider2D projectileCollider;
+    private GameObject projectile;
 
     // Use this for initialization
     void Start()
     {
-        projectileCollider = projectile.GetComponent<Collider2D>();
-        sqrResetSpeed = resetSpeed * resetSpeed;
-        spring = projectile.GetComponent<SpringJoint2D>();
-        projectileBody = projectile.GetComponent<Rigidbody2D>();
+        reload();
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other == projectileCollider)
+        if (other == projectile.GetComponent<Collider2D>())
         {
-            Reset();
-        } else {
-            Destroy(other.gameObject);
+            reload();
         }
+        Destroy(other.gameObject);
+ 
     }
 
-    public void Reset()
+    public void reload()
     {
-        Destroy(projectile);
+        GameObject.Find("Main Camera").GetComponent<CameraMovement>().stopParticles();
         projectile = (GameObject)Instantiate(projectilereference, projectilereference.transform.parent);
         projectile.SetActive(true);
-        projectileCollider = projectile.GetComponent<Collider2D>();
-        spring = projectile.GetComponent<SpringJoint2D>();
-        projectileBody = projectile.GetComponent<Rigidbody2D>();
-        projectileBody.isKinematic = true;
 
-        CameraMovement.projectileS = projectile.transform;
+        projectile.GetComponent<Rigidbody2D>().isKinematic = true;
+
+
+        CameraMovement.projectile = projectile.transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Le spring sert a détecter quand le projectile est lancé.
-        if (spring == null && projectileBody.velocity.sqrMagnitude < sqrResetSpeed)
-        {
-            Reset();
-        }
-    }
 }

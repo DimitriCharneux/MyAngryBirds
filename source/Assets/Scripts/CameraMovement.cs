@@ -2,39 +2,33 @@
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
-    public Transform left, right, projectile;
+    public Transform left, right;
 	public ParticleSystem particles;
-    public static Transform projectileS;
+    public static Transform projectile;
 
     private Vector3 leftPosition;
-	private float xStartParticles;
 	void Start () {
-		if (particles != null) {
-			particles.GetComponent<Renderer> ().sortingLayerName = "Foreground";
-			particles.GetComponent<Renderer> ().sortingOrder = 1;
-			xStartParticles = particles.transform.position.x;
-		}
-        projectileS = projectile;
         leftPosition = transform.position;
         StartCoroutine(SawLevel());
+        particles.Pause();
     }
 	
 	void Update () {
         Vector3 p = transform.position;
-        p.x = Mathf.Clamp(projectileS.position.x, leftPosition.x, right.position.x);
+        p.x = Mathf.Clamp(projectile.position.x, leftPosition.x, right.position.x);
 		transform.position = p;
 
 		if(particles != null){
-			particles.transform.position = projectileS.position;
-			if (particles.transform.position.x < xStartParticles) {
-				particles.Pause ();
-			} else {
-				playParticles ();
-			}
+			particles.transform.position = projectile.position;
 		}
 	}
 
-	void playParticles(){
+    public void stopParticles()
+    {
+        particles.Pause();
+    }
+
+    public void playParticles(){
 		if(particles.isPaused){
 			particles.Clear ();
 			particles.Play ();
